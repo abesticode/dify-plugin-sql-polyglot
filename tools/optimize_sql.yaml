@@ -1,0 +1,64 @@
+identity:
+  name: optimize_sql
+  author: abesticode
+  label:
+    en_US: SQL Query Optimizer
+    ja_JP: SQLクエリオプティマイザー
+    zh_Hans: SQL查询优化器
+    pt_BR: Otimizador de Consulta SQL
+description:
+  human:
+    en_US: Optimize SQL queries by rewriting them into a more efficient canonical form
+    ja_JP: SQLクエリをより効率的な正規形式に書き換えて最適化します
+    zh_Hans: 通过将SQL查询重写为更高效的规范形式来优化查询
+    pt_BR: Otimizar consultas SQL reescrevendo-as em uma forma canônica mais eficiente
+  llm: Optimize SQL queries by applying various optimization techniques such as predicate pushdown, constant folding, boolean simplification, and more. Optionally provide a schema for type-aware optimizations. Returns the optimized SQL query.
+parameters:
+  - name: sql
+    type: string
+    required: true
+    label:
+      en_US: SQL Query
+      ja_JP: SQLクエリ
+      zh_Hans: SQL查询
+      pt_BR: Consulta SQL
+    human_description:
+      en_US: The SQL query to optimize
+      ja_JP: 最適化するSQLクエリ
+      zh_Hans: 要优化的SQL查询
+      pt_BR: A consulta SQL para otimizar
+    llm_description: The SQL query string to optimize using various rewrite rules.
+    form: llm
+  - name: dialect
+    type: string
+    required: false
+    label:
+      en_US: SQL Dialect
+      ja_JP: SQL方言
+      zh_Hans: SQL方言
+      pt_BR: Dialeto SQL
+    human_description:
+      en_US: The SQL dialect for parsing and optimization (auto-detect if not specified)
+      ja_JP: 解析と最適化のためのSQL方言（指定しない場合は自動検出）
+      zh_Hans: 用于解析和优化的SQL方言（未指定时自动检测）
+      pt_BR: O dialeto SQL para análise e otimização (auto-detectar se não especificado)
+    llm_description: The SQL dialect to use for parsing and generating the optimized query.
+    form: llm
+  - name: schema
+    type: string
+    required: false
+    label:
+      en_US: Table Schema
+      ja_JP: テーブルスキーマ
+      zh_Hans: 表架构
+      pt_BR: Esquema da Tabela
+    human_description:
+      en_US: JSON object defining table schemas for type-aware optimization
+      ja_JP: 型認識最適化のためのテーブルスキーマを定義するJSONオブジェクト
+      zh_Hans: 定义表架构的JSON对象，用于类型感知优化
+      pt_BR: Objeto JSON definindo esquemas de tabela para otimização com reconhecimento de tipo
+    llm_description: 'Optional JSON string defining table schemas for type-aware optimizations. Format: {"table_name": {"column_name": "TYPE", ...}}. Example: {"users": {"id": "INT", "name": "STRING", "created_at": "DATE"}}. This enables more accurate optimizations.'
+    form: llm
+extra:
+  python:
+    source: tools/optimize_sql.py

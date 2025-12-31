@@ -1,0 +1,49 @@
+identity:
+  name: validate_sql
+  author: abesticode
+  label:
+    en_US: SQL Syntax Checker
+    ja_JP: SQL構文チェッカー
+    zh_Hans: SQL语法检查器
+    pt_BR: Verificador de Sintaxe SQL
+description:
+  human:
+    en_US: Validate SQL syntax and detect errors, including dialect-specific issues
+    ja_JP: SQL構文を検証し、方言固有の問題を含むエラーを検出します
+    zh_Hans: 验证SQL语法并检测错误，包括方言特定的问题
+    pt_BR: Validar sintaxe SQL e detectar erros, incluindo problemas específicos do dialeto
+  llm: Validate SQL syntax and detect errors such as unbalanced parentheses, incorrect keyword usage, and dialect incompatibilities. Returns detailed error information including line number, column position, and error description if any issues are found.
+parameters:
+  - name: sql
+    type: string
+    required: true
+    label:
+      en_US: SQL Query
+      ja_JP: SQLクエリ
+      zh_Hans: SQL查询
+      pt_BR: Consulta SQL
+    human_description:
+      en_US: The SQL query to validate
+      ja_JP: 検証するSQLクエリ
+      zh_Hans: 要验证的SQL查询
+      pt_BR: A consulta SQL para validar
+    llm_description: The SQL query string to validate for syntax errors.
+    form: llm
+  - name: dialect
+    type: string
+    required: false
+    label:
+      en_US: SQL Dialect
+      ja_JP: SQL方言
+      zh_Hans: SQL方言
+      pt_BR: Dialeto SQL
+    human_description:
+      en_US: The SQL dialect to validate against (auto-detect if not specified)
+      ja_JP: 検証対象のSQL方言（指定しない場合は自動検出）
+      zh_Hans: 要验证的SQL方言（未指定时自动检测）
+      pt_BR: O dialeto SQL para validar (auto-detectar se não especificado)
+    llm_description: The SQL dialect to validate the query against. Specifying the correct dialect enables detection of dialect-specific issues.
+    form: llm
+extra:
+  python:
+    source: tools/validate_sql.py

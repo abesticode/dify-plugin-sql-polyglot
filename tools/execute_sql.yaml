@@ -1,0 +1,64 @@
+identity:
+  name: execute_sql
+  author: abesticode
+  label:
+    en_US: SQL on JSON Executor
+    ja_JP: JSON上SQLエグゼキューター
+    zh_Hans: JSON上SQL执行器
+    pt_BR: Executor SQL em JSON
+description:
+  human:
+    en_US: Execute SQL queries against provided data tables (JSON format)
+    ja_JP: 提供されたデータテーブル（JSON形式）に対してSQLクエリを実行します
+    zh_Hans: 对提供的数据表（JSON格式）执行SQL查询
+    pt_BR: Executar consultas SQL em tabelas de dados fornecidas (formato JSON)
+  llm: Execute SQL queries against provided data tables represented as JSON. Tables should be provided as a JSON object where keys are table names and values are arrays of row objects. Returns the query results. Note - This is for small datasets and testing purposes, not for production database queries.
+parameters:
+  - name: sql
+    type: string
+    required: true
+    label:
+      en_US: SQL Query
+      ja_JP: SQLクエリ
+      zh_Hans: SQL查询
+      pt_BR: Consulta SQL
+    human_description:
+      en_US: The SQL query to execute
+      ja_JP: 実行するSQLクエリ
+      zh_Hans: 要执行的SQL查询
+      pt_BR: A consulta SQL para executar
+    llm_description: The SQL query to execute against the provided data tables.
+    form: llm
+  - name: tables
+    type: string
+    required: true
+    label:
+      en_US: Data Tables
+      ja_JP: データテーブル
+      zh_Hans: 数据表
+      pt_BR: Tabelas de Dados
+    human_description:
+      en_US: JSON object containing table data
+      ja_JP: テーブルデータを含むJSONオブジェクト
+      zh_Hans: 包含表数据的JSON对象
+      pt_BR: Objeto JSON contendo dados da tabela
+    llm_description: 'JSON string containing the data tables to query. Format: {"table_name": [{"col1": val1, "col2": val2}, ...], ...}. Example: {"users": [{"id": 1, "name": "Alice"}, {"id": 2, "name": "Bob"}], "orders": [{"user_id": 1, "amount": 100}]}.'
+    form: llm
+  - name: dialect
+    type: string
+    required: false
+    label:
+      en_US: SQL Dialect
+      ja_JP: SQL方言
+      zh_Hans: SQL方言
+      pt_BR: Dialeto SQL
+    human_description:
+      en_US: The SQL dialect for parsing (auto-detect if not specified)
+      ja_JP: 解析のためのSQL方言（指定しない場合は自動検出）
+      zh_Hans: 用于解析的SQL方言（未指定时自动检测）
+      pt_BR: O dialeto SQL para análise (auto-detectar se não especificado)
+    llm_description: The SQL dialect to use for parsing the query.
+    form: llm
+extra:
+  python:
+    source: tools/execute_sql.py

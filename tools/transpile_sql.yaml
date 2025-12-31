@@ -1,0 +1,80 @@
+identity:
+  name: transpile_sql
+  author: abesticode
+  label:
+    en_US: SQL Dialect Converter
+    ja_JP: SQL方言コンバーター
+    zh_Hans: SQL方言转换器
+    pt_BR: Conversor de Dialeto SQL
+description:
+  human:
+    en_US: Transpile SQL from one dialect to another (e.g., MySQL to PostgreSQL, Spark to BigQuery)
+    ja_JP: SQLをある方言から別の方言に変換します（例：MySQLからPostgreSQL、SparkからBigQuery）
+    zh_Hans: 将SQL从一种方言转换为另一种方言（例如：MySQL到PostgreSQL，Spark到BigQuery）
+    pt_BR: Transpilar SQL de um dialeto para outro (ex., MySQL para PostgreSQL, Spark para BigQuery)
+  llm: Transpile (translate) SQL from one dialect to another. Supports 31+ dialects including athena, bigquery, clickhouse, databricks, doris, drill, duckdb, hive, mysql, oracle, postgres, presto, redshift, snowflake, spark, sqlite, starrocks, teradata, trino, tsql, and more. Returns the transpiled SQL in the target dialect.
+parameters:
+  - name: sql
+    type: string
+    required: true
+    label:
+      en_US: SQL Query
+      ja_JP: SQLクエリ
+      zh_Hans: SQL查询
+      pt_BR: Consulta SQL
+    human_description:
+      en_US: The SQL query to transpile
+      ja_JP: 変換するSQLクエリ
+      zh_Hans: 要转换的SQL查询
+      pt_BR: A consulta SQL para transpilar
+    llm_description: The SQL query string to transpile from the source dialect to the target dialect.
+    form: llm
+  - name: source_dialect
+    type: string
+    required: false
+    label:
+      en_US: Source Dialect
+      ja_JP: ソース方言
+      zh_Hans: 源方言
+      pt_BR: Dialeto de Origem
+    human_description:
+      en_US: The SQL dialect of the input query (auto-detect if not specified)
+      ja_JP: 入力クエリのSQL方言（指定しない場合は自動検出）
+      zh_Hans: 输入查询的SQL方言（未指定时自动检测）
+      pt_BR: O dialeto SQL da consulta de entrada (auto-detectar se não especificado)
+    llm_description: The source SQL dialect to parse the input query. Options include mysql, postgres, sqlite, bigquery, snowflake, spark, presto, trino, duckdb, hive, redshift, oracle, tsql, athena, clickhouse, databricks. Leave empty for auto-detection.
+    form: llm
+  - name: target_dialect
+    type: string
+    required: true
+    label:
+      en_US: Target Dialect
+      ja_JP: ターゲット方言
+      zh_Hans: 目标方言
+      pt_BR: Dialeto Alvo
+    human_description:
+      en_US: The SQL dialect to convert the query to
+      ja_JP: クエリを変換する先のSQL方言
+      zh_Hans: 要将查询转换为的SQL方言
+      pt_BR: O dialeto SQL para converter a consulta
+    llm_description: The target SQL dialect to generate output. Required. Options include mysql, postgres, sqlite, bigquery, snowflake, spark, presto, trino, duckdb, hive, redshift, oracle, tsql, athena, clickhouse, databricks.
+    form: llm
+  - name: pretty
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Pretty Print
+      ja_JP: 整形出力
+      zh_Hans: 美化输出
+      pt_BR: Formatação
+    human_description:
+      en_US: Whether to format the output SQL with proper indentation
+      ja_JP: 出力SQLを適切なインデントでフォーマットするかどうか
+      zh_Hans: 是否使用适当的缩进格式化输出SQL
+      pt_BR: Se deve formatar o SQL de saída com indentação adequada
+    llm_description: Set to true to format the output SQL with proper indentation and line breaks. Default is true.
+    form: llm
+extra:
+  python:
+    source: tools/transpile_sql.py

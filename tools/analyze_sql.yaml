@@ -1,0 +1,49 @@
+identity:
+  name: analyze_sql
+  author: abesticode
+  label:
+    en_US: SQL Metadata Extractor
+    ja_JP: SQLメタデータエクストラクター
+    zh_Hans: SQL元数据提取器
+    pt_BR: Extrator de Metadados SQL
+description:
+  human:
+    en_US: Extract metadata from SQL queries including tables, columns, functions, and query structure
+    ja_JP: SQLクエリからテーブル、カラム、関数、クエリ構造などのメタデータを抽出します
+    zh_Hans: 从SQL查询中提取元数据，包括表、列、函数和查询结构
+    pt_BR: Extrair metadados de consultas SQL incluindo tabelas, colunas, funções e estrutura da consulta
+  llm: Analyze SQL queries to extract metadata including table names, column references, aliases, functions used, joins, subqueries, and query type (SELECT, INSERT, UPDATE, DELETE, etc.). Returns detailed structural information about the query.
+parameters:
+  - name: sql
+    type: string
+    required: true
+    label:
+      en_US: SQL Query
+      ja_JP: SQLクエリ
+      zh_Hans: SQL查询
+      pt_BR: Consulta SQL
+    human_description:
+      en_US: The SQL query to analyze
+      ja_JP: 分析するSQLクエリ
+      zh_Hans: 要分析的SQL查询
+      pt_BR: A consulta SQL para analisar
+    llm_description: The SQL query string to analyze and extract metadata from.
+    form: llm
+  - name: dialect
+    type: string
+    required: false
+    label:
+      en_US: SQL Dialect
+      ja_JP: SQL方言
+      zh_Hans: SQL方言
+      pt_BR: Dialeto SQL
+    human_description:
+      en_US: The SQL dialect for accurate parsing (auto-detect if not specified)
+      ja_JP: 正確な解析のためのSQL方言（指定しない場合は自動検出）
+      zh_Hans: 用于准确解析的SQL方言（未指定时自动检测）
+      pt_BR: O dialeto SQL para análise precisa (auto-detectar se não especificado)
+    llm_description: The SQL dialect to use for parsing. Specifying the correct dialect ensures accurate analysis.
+    form: llm
+extra:
+  python:
+    source: tools/analyze_sql.py

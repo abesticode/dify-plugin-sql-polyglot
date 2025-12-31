@@ -1,0 +1,81 @@
+identity:
+  name: format_sql
+  author: abesticode
+  label:
+    en_US: SQL Beautifier
+    ja_JP: SQLビューティファイア
+    zh_Hans: SQL美化器
+    pt_BR: Embelezador SQL
+description:
+  human:
+    en_US: Format and prettify SQL queries with proper indentation and styling
+    ja_JP: SQLクエリを適切なインデントとスタイルでフォーマットおよび整形します
+    zh_Hans: 使用适当的缩进和样式格式化和美化SQL查询
+    pt_BR: Formatar e embelezar consultas SQL com indentação e estilo adequados
+  llm: Format and prettify SQL queries with proper indentation, line breaks, and styling. Can normalize identifiers and preserve or adjust comments. Returns the beautifully formatted SQL.
+parameters:
+  - name: sql
+    type: string
+    required: true
+    label:
+      en_US: SQL Query
+      ja_JP: SQLクエリ
+      zh_Hans: SQL查询
+      pt_BR: Consulta SQL
+    human_description:
+      en_US: The SQL query to format
+      ja_JP: フォーマットするSQLクエリ
+      zh_Hans: 要格式化的SQL查询
+      pt_BR: A consulta SQL para formatar
+    llm_description: The SQL query string to format with proper indentation and styling.
+    form: llm
+  - name: dialect
+    type: string
+    required: false
+    label:
+      en_US: SQL Dialect
+      ja_JP: SQL方言
+      zh_Hans: SQL方言
+      pt_BR: Dialeto SQL
+    human_description:
+      en_US: The SQL dialect for parsing and formatting (auto-detect if not specified)
+      ja_JP: 解析とフォーマット用のSQL方言（指定しない場合は自動検出）
+      zh_Hans: 用于解析和格式化的SQL方言（未指定时自动检测）
+      pt_BR: O dialeto SQL para análise e formatação (auto-detectar se não especificado)
+    llm_description: The SQL dialect to use for parsing and formatting. Helps preserve dialect-specific syntax. Leave empty for auto-detection.
+    form: llm
+  - name: identify
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Quote Identifiers
+      ja_JP: 識別子をクォート
+      zh_Hans: 引用标识符
+      pt_BR: Citar Identificadores
+    human_description:
+      en_US: Whether to quote all identifiers in the output
+      ja_JP: 出力内のすべての識別子をクォートするかどうか
+      zh_Hans: 是否在输出中引用所有标识符
+      pt_BR: Se deve citar todos os identificadores na saída
+    llm_description: Set to true to add quotes around all identifiers (table names, column names, etc.) in the output. Default is false.
+    form: llm
+  - name: normalize
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Normalize Identifiers
+      ja_JP: 識別子を正規化
+      zh_Hans: 规范化标识符
+      pt_BR: Normalizar Identificadores
+    human_description:
+      en_US: Whether to normalize identifiers to lowercase
+      ja_JP: 識別子を小文字に正規化するかどうか
+      zh_Hans: 是否将标识符规范化为小写
+      pt_BR: Se deve normalizar identificadores para minúsculas
+    llm_description: Set to true to normalize all identifiers to lowercase. Default is false.
+    form: llm
+extra:
+  python:
+    source: tools/format_sql.py

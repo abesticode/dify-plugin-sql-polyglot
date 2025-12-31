@@ -1,0 +1,25 @@
+identity:
+  author: abesticode
+  name: sql_polyglot
+  label:
+    en_US: SQL Polyglot
+    ja_JP: SQL Polyglot
+    zh_Hans: SQL Polyglot
+    pt_BR: SQL Polyglot
+  description:
+    en_US: SQL parsing, transpiling, analysis, optimization, and execution across dialects
+    ja_JP: 方言間でのSQL解析、変換、分析、最適化、実行
+    zh_Hans: 跨方言的SQL解析、转换、分析、优化和执行
+    pt_BR: Análise, transpilação, análise, otimização e execução de SQL entre dialetos
+  icon: icon.svg
+credentials_for_provider: {}
+tools:
+  - tools/transpile_sql.yaml
+  - tools/format_sql.yaml
+  - tools/analyze_sql.yaml
+  - tools/validate_sql.yaml
+  - tools/optimize_sql.yaml
+  - tools/execute_sql.yaml
+extra:
+  python:
+    source: provider/sqlglot.py
