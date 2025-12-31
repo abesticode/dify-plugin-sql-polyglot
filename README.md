@@ -1,8 +1,13 @@
 # SQL Polyglot
 
-**Author:** abesticode  
+<p align="center">
+  <img src="_assets/icon.svg" alt="SQL Polyglot" width="120" />
+</p>
+
+**Author:** [abesticode](https://github.com/abesticode)  
 **Version:** 0.0.1  
-**Type:** Tool Plugin
+**Type:** Tool Plugin  
+**Repo:** https://github.com/abesticode/dify-plugin-sql-polyglot
 
 ## Description
 
